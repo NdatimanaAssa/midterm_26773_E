@@ -1,0 +1,87 @@
+{
+  "Province - Create": {
+    "url": "POST /api/provinces",
+    "payload": {
+      "name": "Kigali",
+      "code": "KGL"
+    }
+  },
+  "Category - Create": {
+    "url": "POST /api/categories",
+    "payload": {
+      "name": "Tools",
+      "description": "Hardware and hand tools"
+    }
+  },
+  "Product - Create": {
+    "url": "POST /api/products?categoryId=1",
+    "payload": {
+      "name": "Hammer",
+      "sku": "HMR-001",
+      "description": "Steel claw hammer",
+      "price": 5000.0,
+      "stockQuantity": 100,
+      "images": [
+        {
+          "imageUrl": "https://example.com/hammer1.jpg"
+        }
+      ]
+    }
+  },
+  "User - Register": {
+    "url": "POST /api/users/register",
+    "payload": {
+      "fullName": "Arthur Doe",
+      "email": "arthur@example.com",
+      "phone": "0780000000",
+      "password": "password123",
+      "location": {
+        "district": "Gasabo",
+        "sector": "Kimironko",
+        "street": "KG 11 Ave",
+        "provinceCode": "KGL"
+      }
+    }
+  },
+  "Order - Guest Checkout": {
+    "url": "POST /api/orders/guest",
+    "payload": {
+      "guestName": "John Guest",
+      "guestPhone": "0781234567",
+      "guestEmail": "guest@example.com",
+      "paymentMethod": "MTN_MOMO",
+      "deliveryMethod": "HOME_DELIVERY",
+      "location": {
+        "district": "Nyarugenge",
+        "sector": "Nyamirambo",
+        "street": "KN 2 Ave",
+        "provinceCode": "KGL"
+      },
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  "Order - User Checkout": {
+    "url": "POST /api/orders/user/1",
+    "payload": {
+      "paymentMethod": "CASH_ON_DELIVERY",
+      "deliveryMethod": "PICKUP",
+      "location": {
+        "district": "Gasabo",
+        "sector": "Kimironko",
+        "street": "KG 11 Ave",
+        "provinceCode": "KGL"
+      },
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        }
+      ]
+    }
+  }
+}
