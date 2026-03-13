@@ -1,5 +1,6 @@
 package com.quickbuild.domain;
 
+import com.quickbuild.domain.enums.ELocationType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,14 +18,16 @@ public class Location {
     private Long id;
 
     @Column(nullable = false)
-    private String district;
+    private String name;
 
+    @Column(nullable = false, unique = true)
+    private String code;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String sector;
-
-    private String street;
+    private ELocationType type;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "province_id", nullable = false)
-    private Province province;
+    @JoinColumn(name = "parent_id")
+    private Location parent;
 }

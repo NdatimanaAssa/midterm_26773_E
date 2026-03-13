@@ -23,16 +23,6 @@ public class UserController {
         return new ResponseEntity<>(userService.registerUser(request), HttpStatus.CREATED);
     }
 
-    @GetMapping("/province/code/{code}")
-    public ResponseEntity<List<User>> getUsersByProvinceCode(@PathVariable String code) {
-        return ResponseEntity.ok(userService.getUsersByProvinceCode(code));
-    }
-
-    @GetMapping("/province/name/{name}")
-    public ResponseEntity<List<User>> getUsersByProvinceName(@PathVariable String name) {
-        return ResponseEntity.ok(userService.getUsersByProvinceName(name));
-    }
-
     // Additional helpful endpoints
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {

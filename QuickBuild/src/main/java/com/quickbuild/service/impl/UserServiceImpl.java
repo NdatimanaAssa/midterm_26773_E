@@ -1,14 +1,14 @@
 package com.quickbuild.service.impl;
 
-import com.quickbuild.domain.User;
 import com.quickbuild.domain.Location;
-import com.quickbuild.domain.Province;
 import com.quickbuild.domain.Role;
+import com.quickbuild.domain.User;
+import com.quickbuild.domain.enums.ELocationType;
 import com.quickbuild.domain.enums.RoleName;
 import com.quickbuild.dto.request.UserRegistrationRequest;
 import com.quickbuild.exception.DuplicateResourceException;
 import com.quickbuild.exception.ResourceNotFoundException;
-import com.quickbuild.repository.ProvinceRepository;
+import com.quickbuild.repository.LocationRepository;
 import com.quickbuild.repository.RoleRepository;
 import com.quickbuild.repository.UserRepository;
 import com.quickbuild.service.UserService;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final ProvinceRepository provinceRepository;
+    private final LocationRepository locationRepository;
 
     @Override
     @Transactional
@@ -46,39 +45,28 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Collections.singleton(customerRole));
 
         // Location setup
-        Location location = new Location();
-        location.setDistrict(request.getLocation().getDistrict());
-        location.setSector(request.getLocation().getSector());
-        location.setStreet(request.getLocation().getStreet());
+        Location village = null;
+        if (request.getLocation() != null) {
+            if (request.getLocation().getVillageCode() != null) {
+                village = locationRepository.findByCode(request.getLocation().getVillageCode())
+                        .orElseThrow(() -> new ResourceNotFoundException("Village code not found"));
+            } else if (request.getLocation().getVillageName() != null) {
+                village = locationRepository.findByName(request.getLocation().getVillageName())
+                        .orElseThrow(() -> new ResourceNotFoundException("Village name not found"));
+            } else {
+                throw new IllegalArgumentException("Village code or name must be provided");
+            }
 
-        // We assume province is managed and provided via code or name
-        Province province = null;
-        if (request.getLocation().getProvinceCode() != null) {
-            province = provinceRepository.findAll().stream()
-                    .filter(p -> p.getCode().equalsIgnoreCase(request.getLocation().getProvinceCode()))
-                    .findFirst().orElseThrow(() -> new ResourceNotFoundException("Province code not found"));
-        } else if (request.getLocation().getProvinceName() != null) {
-            province = provinceRepository.findAll().stream()
-                    .filter(p -> p.getName().equalsIgnoreCase(request.getLocation().getProvinceName()))
-                    .findFirst().orElseThrow(() -> new ResourceNotFoundException("Province name not found"));
+            if (village.getType() != ELocationType.VILLAGE) {
+                throw new IllegalArgumentException("The provided location is not a VILLAGE");
+            }
         } else {
-            throw new IllegalArgumentException("Province info must be provided");
+            throw new IllegalArgumentException("Location information is required");
         }
 
-        location.setProvince(province);
-        user.setLocation(location);
+        user.setVillage(village);
 
         return userRepository.save(user);
-    }
-
-    @Override
-    public List<User> getUsersByProvinceCode(String code) {
-        return userRepository.findByLocationProvinceCode(code.toUpperCase());
-    }
-
-    @Override
-    public List<User> getUsersByProvinceName(String name) {
-        return userRepository.findByLocationProvinceName(name);
     }
 
     @Override

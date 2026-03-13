@@ -1,6 +1,7 @@
 package com.quickbuild.service.impl;
 
 import com.quickbuild.domain.*;
+import com.quickbuild.domain.enums.ELocationType;
 import com.quickbuild.domain.enums.OrderStatus;
 import com.quickbuild.dto.request.GuestOrderRequest;
 import com.quickbuild.dto.request.OrderItemRequest;
@@ -27,7 +28,6 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
-    private final ProvinceRepository provinceRepository;
     private final LocationRepository locationRepository;
 
     @Override
@@ -75,27 +75,26 @@ public class OrderServiceImpl implements OrderService {
         order.setDeliveryMethod(deliveryMethod);
         order.setOrderStatus(OrderStatus.PENDING);
 
-        // Location Setup
-        Location location = new Location();
-        location.setDistrict(locationReq.getDistrict());
-        location.setSector(locationReq.getSector());
-        location.setStreet(locationReq.getStreet());
+        // Location Setup (Linking to an existing Village)
+        Location village = null;
+        if (locationReq != null) {
+            if (locationReq.getVillageCode() != null) {
+                village = locationRepository.findByCode(locationReq.getVillageCode())
+                        .orElseThrow(() -> new ResourceNotFoundException("Village code not found"));
+            } else if (locationReq.getVillageName() != null) {
+                village = locationRepository.findByName(locationReq.getVillageName())
+                        .orElseThrow(() -> new ResourceNotFoundException("Village name not found"));
+            } else {
+                throw new IllegalArgumentException("Village code or name must be provided");
+            }
 
-        Province province = null;
-        if (locationReq.getProvinceCode() != null) {
-            province = provinceRepository.findAll().stream()
-                    .filter(p -> p.getCode().equalsIgnoreCase(locationReq.getProvinceCode()))
-                    .findFirst().orElseThrow(() -> new ResourceNotFoundException("Province code not found"));
-        } else if (locationReq.getProvinceName() != null) {
-            province = provinceRepository.findAll().stream()
-                    .filter(p -> p.getName().equalsIgnoreCase(locationReq.getProvinceName()))
-                    .findFirst().orElseThrow(() -> new ResourceNotFoundException("Province name not found"));
+            if (village.getType() != ELocationType.VILLAGE) {
+                throw new IllegalArgumentException("The provided location is not a VILLAGE");
+            }
         } else {
-            throw new IllegalArgumentException("Province info must be provided");
+            throw new IllegalArgumentException("Location information is required");
         }
-        location.setProvince(province);
-        location = locationRepository.save(location);
-        order.setLocation(location);
+        order.setLocation(village);
 
         // Items Setup
         BigDecimal totalAmount = BigDecimal.ZERO;

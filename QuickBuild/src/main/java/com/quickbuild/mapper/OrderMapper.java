@@ -31,12 +31,7 @@ public class OrderMapper {
         }
 
         if (order.getLocation() != null) {
-            String address = String.format("%s, %s, %s, %s",
-                    order.getLocation().getStreet() != null ? order.getLocation().getStreet() : "",
-                    order.getLocation().getSector(),
-                    order.getLocation().getDistrict(),
-                    order.getLocation().getProvince().getName());
-            response.setDeliveryAddress(address);
+            response.setDeliveryAddress(order.getLocation().getName());
         }
 
         if (order.getOrderItems() != null && !order.getOrderItems().isEmpty()) {

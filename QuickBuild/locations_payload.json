@@ -1,0 +1,767 @@
+{
+    "--- PHASE 1: PROVINCES ---": "Run these first using POST /api/locations without a parentId.",
+    "P1 - Kigali City": {
+        "url": "POST /api/locations",
+        "payload": {
+            "name": "Kigali City",
+            "code": "KGL",
+            "type": "PROVINCE"
+        }
+    },
+    "P2 - Northern Province": {
+        "url": "POST /api/locations",
+        "payload": {
+            "name": "Northern Province",
+            "code": "NORD",
+            "type": "PROVINCE"
+        }
+    },
+    "P3 - Southern Province": {
+        "url": "POST /api/locations",
+        "payload": {
+            "name": "Southern Province",
+            "code": "SUD",
+            "type": "PROVINCE"
+        }
+    },
+    "P4 - Eastern Province": {
+        "url": "POST /api/locations",
+        "payload": {
+            "name": "Eastern Province",
+            "code": "EST",
+            "type": "PROVINCE"
+        }
+    },
+    "P5 - Western Province": {
+        "url": "POST /api/locations",
+        "payload": {
+            "name": "Western Province",
+            "code": "OUEST",
+            "type": "PROVINCE"
+        }
+    },
+    "--- PHASE 2: DISTRICTS ---": "Run these using POST /api/locations?parentId={PROVINCE_ID}. Make sure to replace {PROVINCE_ID} with the ID of the corresponding province created above.",
+    "D1 - Gasabo (Parent: Kigali = 1)": {
+        "url": "POST /api/locations?parentId=1",
+        "payload": {
+            "name": "Gasabo",
+            "code": "GAS",
+            "type": "DISTRICT"
+        }
+    },
+    "D2 - Nyarugenge (Parent: Kigali = 1)": {
+        "url": "POST /api/locations?parentId=1",
+        "payload": {
+            "name": "Nyarugenge",
+            "code": "NYA",
+            "type": "DISTRICT"
+        }
+    },
+    "D3 - Musanze (Parent: North = 2)": {
+        "url": "POST /api/locations?parentId=2",
+        "payload": {
+            "name": "Musanze",
+            "code": "MUS",
+            "type": "DISTRICT"
+        }
+    },
+    "D4 - Gicumbi (Parent: North = 2)": {
+        "url": "POST /api/locations?parentId=2",
+        "payload": {
+            "name": "Gicumbi",
+            "code": "GIC",
+            "type": "DISTRICT"
+        }
+    },
+    "D5 - Huye (Parent: South = 3)": {
+        "url": "POST /api/locations?parentId=3",
+        "payload": {
+            "name": "Huye",
+            "code": "HUY",
+            "type": "DISTRICT"
+        }
+    },
+    "D6 - Muhanga (Parent: South = 3)": {
+        "url": "POST /api/locations?parentId=3",
+        "payload": {
+            "name": "Muhanga",
+            "code": "MUH",
+            "type": "DISTRICT"
+        }
+    },
+    "D7 - Nyagatare (Parent: East = 4)": {
+        "url": "POST /api/locations?parentId=4",
+        "payload": {
+            "name": "Nyagatare",
+            "code": "NYAG",
+            "type": "DISTRICT"
+        }
+    },
+    "D8 - Rwamagana (Parent: East = 4)": {
+        "url": "POST /api/locations?parentId=4",
+        "payload": {
+            "name": "Rwamagana",
+            "code": "RWA",
+            "type": "DISTRICT"
+        }
+    },
+    "D9 - Rubavu (Parent: West = 5)": {
+        "url": "POST /api/locations?parentId=5",
+        "payload": {
+            "name": "Rubavu",
+            "code": "RUB",
+            "type": "DISTRICT"
+        }
+    },
+    "D10 - Rusizi (Parent: West = 5)": {
+        "url": "POST /api/locations?parentId=5",
+        "payload": {
+            "name": "Rusizi",
+            "code": "RSZ",
+            "type": "DISTRICT"
+        }
+    },
+    "--- PHASE 3: SECTORS ---": "Run these using POST /api/locations?parentId={DISTRICT_ID}. Assuming District IDs logically mapped below.",
+    "S1 - Kimironko (Parent: Gasabo = 6)": {
+        "url": "POST /api/locations?parentId=6",
+        "payload": {
+            "name": "Kimironko",
+            "code": "KIM",
+            "type": "SECTOR"
+        }
+    },
+    "S2 - Remera (Parent: Gasabo = 6)": {
+        "url": "POST /api/locations?parentId=6",
+        "payload": {
+            "name": "Remera",
+            "code": "REM",
+            "type": "SECTOR"
+        }
+    },
+    "S3 - Nyamirambo (Parent: Nyarugenge = 7)": {
+        "url": "POST /api/locations?parentId=7",
+        "payload": {
+            "name": "Nyamirambo",
+            "code": "NYM",
+            "type": "SECTOR"
+        }
+    },
+    "S4 - Kanyinya (Parent: Nyarugenge = 7)": {
+        "url": "POST /api/locations?parentId=7",
+        "payload": {
+            "name": "Kanyinya",
+            "code": "KAN",
+            "type": "SECTOR"
+        }
+    },
+    "S5 - Muhoza (Parent: Musanze = 8)": {
+        "url": "POST /api/locations?parentId=8",
+        "payload": {
+            "name": "Muhoza",
+            "code": "MHZ",
+            "type": "SECTOR"
+        }
+    },
+    "S6 - Kinigi (Parent: Musanze = 8)": {
+        "url": "POST /api/locations?parentId=8",
+        "payload": {
+            "name": "Kinigi",
+            "code": "KNG",
+            "type": "SECTOR"
+        }
+    },
+    "S7 - Byumba (Parent: Gicumbi = 9)": {
+        "url": "POST /api/locations?parentId=9",
+        "payload": {
+            "name": "Byumba",
+            "code": "BYU",
+            "type": "SECTOR"
+        }
+    },
+    "S8 - Kageyo (Parent: Gicumbi = 9)": {
+        "url": "POST /api/locations?parentId=9",
+        "payload": {
+            "name": "Kageyo",
+            "code": "KGY",
+            "type": "SECTOR"
+        }
+    },
+    "S9 - Ngoma (Parent: Huye = 10)": {
+        "url": "POST /api/locations?parentId=10",
+        "payload": {
+            "name": "Ngoma",
+            "code": "NGO",
+            "type": "SECTOR"
+        }
+    },
+    "S10 - Tumba (Parent: Huye = 10)": {
+        "url": "POST /api/locations?parentId=10",
+        "payload": {
+            "name": "Tumba",
+            "code": "TUM",
+            "type": "SECTOR"
+        }
+    },
+    "S11 - Nyamabuye (Parent: Muhanga = 11)": {
+        "url": "POST /api/locations?parentId=11",
+        "payload": {
+            "name": "Nyamabuye",
+            "code": "NMB",
+            "type": "SECTOR"
+        }
+    },
+    "S12 - Shyogwe (Parent: Muhanga = 11)": {
+        "url": "POST /api/locations?parentId=11",
+        "payload": {
+            "name": "Shyogwe",
+            "code": "SHY",
+            "type": "SECTOR"
+        }
+    },
+    "S13 - Nyagatare Sec (Parent: Nyagatare = 12)": {
+        "url": "POST /api/locations?parentId=12",
+        "payload": {
+            "name": "Nyagatare Sector",
+            "code": "NYS",
+            "type": "SECTOR"
+        }
+    },
+    "S14 - Matimba (Parent: Nyagatare = 12)": {
+        "url": "POST /api/locations?parentId=12",
+        "payload": {
+            "name": "Matimba",
+            "code": "MAT",
+            "type": "SECTOR"
+        }
+    },
+    "S15 - Kigabiro (Parent: Rwamagana = 13)": {
+        "url": "POST /api/locations?parentId=13",
+        "payload": {
+            "name": "Kigabiro",
+            "code": "KGB",
+            "type": "SECTOR"
+        }
+    },
+    "S16 - Muhazi (Parent: Rwamagana = 13)": {
+        "url": "POST /api/locations?parentId=13",
+        "payload": {
+            "name": "Muhazi",
+            "code": "MHZ1",
+            "type": "SECTOR"
+        }
+    },
+    "S17 - Gisenyi (Parent: Rubavu = 14)": {
+        "url": "POST /api/locations?parentId=14",
+        "payload": {
+            "name": "Gisenyi",
+            "code": "GIS",
+            "type": "SECTOR"
+        }
+    },
+    "S18 - Rubavu Sec (Parent: Rubavu = 14)": {
+        "url": "POST /api/locations?parentId=14",
+        "payload": {
+            "name": "Rubavu Sector",
+            "code": "RBS",
+            "type": "SECTOR"
+        }
+    },
+    "S19 - Kamembe (Parent: Rusizi = 15)": {
+        "url": "POST /api/locations?parentId=15",
+        "payload": {
+            "name": "Kamembe",
+            "code": "KAM",
+            "type": "SECTOR"
+        }
+    },
+    "S20 - Mururu (Parent: Rusizi = 15)": {
+        "url": "POST /api/locations?parentId=15",
+        "payload": {
+            "name": "Mururu",
+            "code": "MUR",
+            "type": "SECTOR"
+        }
+    },
+    "--- PHASE 4: CELLS ---": "Run these using POST /api/locations?parentId={SECTOR_ID}.",
+    "C1 - (Parent: Kimironko = 16)": {
+        "url": "POST /api/locations?parentId=16",
+        "payload": {
+            "name": "Kibagabaga",
+            "code": "KIB",
+            "type": "CELL"
+        }
+    },
+    "C2 - (Parent: Remera = 17)": {
+        "url": "POST /api/locations?parentId=17",
+        "payload": {
+            "name": "Nyabisindu",
+            "code": "NYB",
+            "type": "CELL"
+        }
+    },
+    "C3 - (Parent: Nyamirambo = 18)": {
+        "url": "POST /api/locations?parentId=18",
+        "payload": {
+            "name": "Kivugiza",
+            "code": "KVG",
+            "type": "CELL"
+        }
+    },
+    "C4 - (Parent: Kanyinya = 19)": {
+        "url": "POST /api/locations?parentId=19",
+        "payload": {
+            "name": "Nyamweru",
+            "code": "NYW",
+            "type": "CELL"
+        }
+    },
+    "C5 - (Parent: Muhoza = 20)": {
+        "url": "POST /api/locations?parentId=20",
+        "payload": {
+            "name": "Ruhengeri",
+            "code": "RHN",
+            "type": "CELL"
+        }
+    },
+    "C6 - (Parent: Kinigi = 21)": {
+        "url": "POST /api/locations?parentId=21",
+        "payload": {
+            "name": "Nyonirima",
+            "code": "NYR",
+            "type": "CELL"
+        }
+    },
+    "C7 - (Parent: Byumba = 22)": {
+        "url": "POST /api/locations?parentId=22",
+        "payload": {
+            "name": "Nyamabuye",
+            "code": "BYU_N",
+            "type": "CELL"
+        }
+    },
+    "C8 - (Parent: Kageyo = 23)": {
+        "url": "POST /api/locations?parentId=23",
+        "payload": {
+            "name": "Gihembe",
+            "code": "GHM",
+            "type": "CELL"
+        }
+    },
+    "C9 - (Parent: Ngoma = 24)": {
+        "url": "POST /api/locations?parentId=24",
+        "payload": {
+            "name": "Matyazo",
+            "code": "MTZ",
+            "type": "CELL"
+        }
+    },
+    "C10 - (Parent: Tumba = 25)": {
+        "url": "POST /api/locations?parentId=25",
+        "payload": {
+            "name": "Cyimana",
+            "code": "CYM",
+            "type": "CELL"
+        }
+    },
+    "C11 - (Parent: Nyamabuye = 26)": {
+        "url": "POST /api/locations?parentId=26",
+        "payload": {
+            "name": "Gahogo",
+            "code": "GHG",
+            "type": "CELL"
+        }
+    },
+    "C12 - (Parent: Shyogwe = 27)": {
+        "url": "POST /api/locations?parentId=27",
+        "payload": {
+            "name": "Ruli",
+            "code": "RUL",
+            "type": "CELL"
+        }
+    },
+    "C13 - (Parent: Nyagatare Sec = 28)": {
+        "url": "POST /api/locations?parentId=28",
+        "payload": {
+            "name": "Nsheke",
+            "code": "NSH",
+            "type": "CELL"
+        }
+    },
+    "C14 - (Parent: Matimba = 29)": {
+        "url": "POST /api/locations?parentId=29",
+        "payload": {
+            "name": "Kagitumba",
+            "code": "KGT",
+            "type": "CELL"
+        }
+    },
+    "C15 - (Parent: Kigabiro = 30)": {
+        "url": "POST /api/locations?parentId=30",
+        "payload": {
+            "name": "Bwiza",
+            "code": "BWZ",
+            "type": "CELL"
+        }
+    },
+    "C16 - (Parent: Muhazi = 31)": {
+        "url": "POST /api/locations?parentId=31",
+        "payload": {
+            "name": "Ntebe",
+            "code": "NTB",
+            "type": "CELL"
+        }
+    },
+    "C17 - (Parent: Gisenyi = 32)": {
+        "url": "POST /api/locations?parentId=32",
+        "payload": {
+            "name": "Mbugangari",
+            "code": "MBG",
+            "type": "CELL"
+        }
+    },
+    "C18 - (Parent: Rubavu Sec = 33)": {
+        "url": "POST /api/locations?parentId=33",
+        "payload": {
+            "name": "Byahi",
+            "code": "BYH",
+            "type": "CELL"
+        }
+    },
+    "C19 - (Parent: Kamembe = 34)": {
+        "url": "POST /api/locations?parentId=34",
+        "payload": {
+            "name": "Ruganda",
+            "code": "RUG",
+            "type": "CELL"
+        }
+    },
+    "C20 - (Parent: Mururu = 35)": {
+        "url": "POST /api/locations?parentId=35",
+        "payload": {
+            "name": "Kagarama",
+            "code": "KGR",
+            "type": "CELL"
+        }
+    },
+    "--- PHASE 5: VILLAGES ---": "Run these using POST /api/locations?parentId={CELL_ID}. You will do 2 of these per Cell.",
+    "V1 - (Parent: Kibagabaga = 36)": {
+        "url": "POST /api/locations?parentId=36",
+        "payload": {
+            "name": "Ramiro",
+            "code": "RAM",
+            "type": "VILLAGE"
+        }
+    },
+    "V2 - (Parent: Kibagabaga = 36)": {
+        "url": "POST /api/locations?parentId=36",
+        "payload": {
+            "name": "Kamashashi",
+            "code": "KMH",
+            "type": "VILLAGE"
+        }
+    },
+    "V3 - (Parent: Nyabisindu = 37)": {
+        "url": "POST /api/locations?parentId=37",
+        "payload": {
+            "name": "Amarembo",
+            "code": "AMR",
+            "type": "VILLAGE"
+        }
+    },
+    "V4 - (Parent: Nyabisindu = 37)": {
+        "url": "POST /api/locations?parentId=37",
+        "payload": {
+            "name": "Urumuri",
+            "code": "URM",
+            "type": "VILLAGE"
+        }
+    },
+    "V5 - (Parent: Kivugiza = 38)": {
+        "url": "POST /api/locations?parentId=38",
+        "payload": {
+            "name": "Kivugiza Village",
+            "code": "KVGV",
+            "type": "VILLAGE"
+        }
+    },
+    "V6 - (Parent: Kivugiza = 38)": {
+        "url": "POST /api/locations?parentId=38",
+        "payload": {
+            "name": "Rwezamenyo",
+            "code": "RWZ",
+            "type": "VILLAGE"
+        }
+    },
+    "V7 - (Parent: Nyamweru = 39)": {
+        "url": "POST /api/locations?parentId=39",
+        "payload": {
+            "name": "Kanyinya Village",
+            "code": "KANV",
+            "type": "VILLAGE"
+        }
+    },
+    "V8 - (Parent: Nyamweru = 39)": {
+        "url": "POST /api/locations?parentId=39",
+        "payload": {
+            "name": "Nyamweru Village",
+            "code": "NYWV",
+            "type": "VILLAGE"
+        }
+    },
+    "V9 - (Parent: Ruhengeri = 40)": {
+        "url": "POST /api/locations?parentId=40",
+        "payload": {
+            "name": "Kizungu",
+            "code": "KZG",
+            "type": "VILLAGE"
+        }
+    },
+    "V10 - (Parent: Ruhengeri = 40)": {
+        "url": "POST /api/locations?parentId=40",
+        "payload": {
+            "name": "Gakiriro",
+            "code": "GKK",
+            "type": "VILLAGE"
+        }
+    },
+    "V11 - (Parent: Nyonirima = 41)": {
+        "url": "POST /api/locations?parentId=41",
+        "payload": {
+            "name": "Bisate",
+            "code": "BST",
+            "type": "VILLAGE"
+        }
+    },
+    "V12 - (Parent: Nyonirima = 41)": {
+        "url": "POST /api/locations?parentId=41",
+        "payload": {
+            "name": "Kagano",
+            "code": "KGO",
+            "type": "VILLAGE"
+        }
+    },
+    "V13 - (Parent: Byumba = 42)": {
+        "url": "POST /api/locations?parentId=42",
+        "payload": {
+            "name": "Kibali",
+            "code": "KBL",
+            "type": "VILLAGE"
+        }
+    },
+    "V14 - (Parent: Byumba = 42)": {
+        "url": "POST /api/locations?parentId=42",
+        "payload": {
+            "name": "Nyarurema",
+            "code": "NRR",
+            "type": "VILLAGE"
+        }
+    },
+    "V15 - (Parent: Gihembe = 43)": {
+        "url": "POST /api/locations?parentId=43",
+        "payload": {
+            "name": "Camp",
+            "code": "CMP",
+            "type": "VILLAGE"
+        }
+    },
+    "V16 - (Parent: Gihembe = 43)": {
+        "url": "POST /api/locations?parentId=43",
+        "payload": {
+            "name": "Gatsata",
+            "code": "GTS",
+            "type": "VILLAGE"
+        }
+    },
+    "V17 - (Parent: Matyazo = 44)": {
+        "url": "POST /api/locations?parentId=44",
+        "payload": {
+            "name": "Kabutare",
+            "code": "KBT",
+            "type": "VILLAGE"
+        }
+    },
+    "V18 - (Parent: Matyazo = 44)": {
+        "url": "POST /api/locations?parentId=44",
+        "payload": {
+            "name": "Rango",
+            "code": "RNG",
+            "type": "VILLAGE"
+        }
+    },
+    "V19 - (Parent: Cyimana = 45)": {
+        "url": "POST /api/locations?parentId=45",
+        "payload": {
+            "name": "Cyimana Village",
+            "code": "CYMV",
+            "type": "VILLAGE"
+        }
+    },
+    "V20 - (Parent: Cyimana = 45)": {
+        "url": "POST /api/locations?parentId=45",
+        "payload": {
+            "name": "Rango B",
+            "code": "RGB",
+            "type": "VILLAGE"
+        }
+    },
+    "V21 - (Parent: Gahogo = 46)": {
+        "url": "POST /api/locations?parentId=46",
+        "payload": {
+            "name": "Gahogo A",
+            "code": "GHGA",
+            "type": "VILLAGE"
+        }
+    },
+    "V22 - (Parent: Gahogo = 46)": {
+        "url": "POST /api/locations?parentId=46",
+        "payload": {
+            "name": "Gahogo B",
+            "code": "GHGB",
+            "type": "VILLAGE"
+        }
+    },
+    "V23 - (Parent: Ruli = 47)": {
+        "url": "POST /api/locations?parentId=47",
+        "payload": {
+            "name": "Ruli A",
+            "code": "RULA",
+            "type": "VILLAGE"
+        }
+    },
+    "V24 - (Parent: Ruli = 47)": {
+        "url": "POST /api/locations?parentId=47",
+        "payload": {
+            "name": "Ruli B",
+            "code": "RULB",
+            "type": "VILLAGE"
+        }
+    },
+    "V25 - (Parent: Nsheke = 48)": {
+        "url": "POST /api/locations?parentId=48",
+        "payload": {
+            "name": "Nsheke Village",
+            "code": "NSHV",
+            "type": "VILLAGE"
+        }
+    },
+    "V26 - (Parent: Nsheke = 48)": {
+        "url": "POST /api/locations?parentId=48",
+        "payload": {
+            "name": "Kabeza",
+            "code": "KBZ",
+            "type": "VILLAGE"
+        }
+    },
+    "V27 - (Parent: Kagitumba = 49)": {
+        "url": "POST /api/locations?parentId=49",
+        "payload": {
+            "name": "Border",
+            "code": "BRD",
+            "type": "VILLAGE"
+        }
+    },
+    "V28 - (Parent: Kagitumba = 49)": {
+        "url": "POST /api/locations?parentId=49",
+        "payload": {
+            "name": "Customs",
+            "code": "CST",
+            "type": "VILLAGE"
+        }
+    },
+    "V29 - (Parent: Bwiza = 50)": {
+        "url": "POST /api/locations?parentId=50",
+        "payload": {
+            "name": "Bwiza A",
+            "code": "BWZA",
+            "type": "VILLAGE"
+        }
+    },
+    "V30 - (Parent: Bwiza = 50)": {
+        "url": "POST /api/locations?parentId=50",
+        "payload": {
+            "name": "Bwiza B",
+            "code": "BWZB",
+            "type": "VILLAGE"
+        }
+    },
+    "V31 - (Parent: Ntebe = 51)": {
+        "url": "POST /api/locations?parentId=51",
+        "payload": {
+            "name": "Ntebe Village",
+            "code": "NTBV",
+            "type": "VILLAGE"
+        }
+    },
+    "V32 - (Parent: Ntebe = 51)": {
+        "url": "POST /api/locations?parentId=51",
+        "payload": {
+            "name": "Lake View",
+            "code": "LKV",
+            "type": "VILLAGE"
+        }
+    },
+    "V33 - (Parent: Mbugangari = 52)": {
+        "url": "POST /api/locations?parentId=52",
+        "payload": {
+            "name": "Beach",
+            "code": "BCH",
+            "type": "VILLAGE"
+        }
+    },
+    "V34 - (Parent: Mbugangari = 52)": {
+        "url": "POST /api/locations?parentId=52",
+        "payload": {
+            "name": "Mbugangari Village",
+            "code": "MBGV",
+            "type": "VILLAGE"
+        }
+    },
+    "V35 - (Parent: Byahi = 53)": {
+        "url": "POST /api/locations?parentId=53",
+        "payload": {
+            "name": "Byahi Village",
+            "code": "BYHV",
+            "type": "VILLAGE"
+        }
+    },
+    "V36 - (Parent: Byahi = 53)": {
+        "url": "POST /api/locations?parentId=53",
+        "payload": {
+            "name": "Majengo",
+            "code": "MJG",
+            "type": "VILLAGE"
+        }
+    },
+    "V37 - (Parent: Ruganda = 54)": {
+        "url": "POST /api/locations?parentId=54",
+        "payload": {
+            "name": "Ruganda Village",
+            "code": "RUGV",
+            "type": "VILLAGE"
+        }
+    },
+    "V38 - (Parent: Ruganda = 54)": {
+        "url": "POST /api/locations?parentId=54",
+        "payload": {
+            "name": "Market",
+            "code": "MRK",
+            "type": "VILLAGE"
+        }
+    },
+    "V39 - (Parent: Kagarama = 55)": {
+        "url": "POST /api/locations?parentId=55",
+        "payload": {
+            "name": "Kagarama A",
+            "code": "KGAA",
+            "type": "VILLAGE"
+        }
+    },
+    "V40 - (Parent: Kagarama = 55)": {
+        "url": "POST /api/locations?parentId=55",
+        "payload": {
+            "name": "Kagarama B",
+            "code": "KGAB",
+            "type": "VILLAGE"
+        }
+    }
+}
