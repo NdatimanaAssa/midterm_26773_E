@@ -116,3 +116,84 @@ Once a Village exists, register a user using the Village's code:
 
 **Step 3. Catalog & Orders**
 Use the sample requests in `postman_payloads.json` to create `Categories`, `Products`, and process a `Guest Checkout`!
+
+---
+
+## 📸 Required Assignment Screenshots
+
+*(Please save your screenshots in the `screenshots/` folder at the root of this project and verify the filenames match the placeholders below.)*
+
+The following screenshots are required to demonstrate the functional implementation of the Rwandan location hierarchy and relationships in the QuickBuild project:
+
+### 1. Creating the Northern Province (Root)
+**Description:** Creating the root level of the hierarchy. A Province has no parent.
+**Endpoint:**
+```http
+POST http://localhost:8080/api/locations
+```
+**JSON Payload:**
+```json
+{
+  "name": "Northern Province",
+  "code": "NOR",
+  "type": "PROVINCE"
+}
+```
+![Northern Province Creation](screenshots/1_northern_province.png)
+
+### 2. Creating Musanze District (Child)
+**Description:** Creating a district linked to the province using the `parentId` parameter. This demonstrates the correct routing and self-referencing relationship in the `locations` table.
+**Endpoint:** *(Replace PROVINCE_ID with the actual ID returned from step 1)*
+```http
+POST http://localhost:8080/api/locations?parentId=PROVINCE_ID
+```
+**JSON Payload:**
+```json
+{
+  "name": "Musanze",
+  "code": "MUS",
+  "type": "DISTRICT"
+}
+```
+![Musanze District Creation](screenshots/2_musanze_district.png)
+
+### 3. Database `locations` Table Hierarchy
+**Description:** A screenshot of pgAdmin (or your database viewer) showing the `locations` table data. The hierarchy is stored using the `parent_id` column, proving the self-referencing entity implementation. It should display rows similar to:
+
+*   **Northern Province** → `PROVINCE` → `parent_id`: *null*
+*   **Musanze** → `DISTRICT` → `parent_id`: *(ID of Northern Province)*
+*   **Muhoza** → `SECTOR` → `parent_id`: *(ID of Musanze)*
+*   **Cyabararika** → `CELL` → `parent_id`: *(ID of Muhoza)*
+*   **Kabazungu** → `VILLAGE` → `parent_id`: *(ID of Cyabararika)*
+
+![locations Table Hierarchy in Database](screenshots/3_locations_table_hierarchy.png)
+
+### 4. Registering a User (Village Mapping)
+**Description:** Creating a user linked strictly to a Village. The full location hierarchy (Cell, Sector, District, Province) is determined automatically through the database parent relationships, removing the need to specify them here.
+**Endpoint:**
+```http
+POST http://localhost:8080/api/users/register
+```
+**JSON Payload:**
+```json
+{
+  "fullName": "Arthur Doe",
+  "email": "arthur@example.com",
+  "phone": "0780000000",
+  "password": "password123",
+  "location": {
+    "villageCode": "KAB"
+  }
+}
+```
+![User Registration with Village Code](screenshots/4_user_registration.png)
+
+### 5. Retrieving Users by Province
+**Description:** Demonstrating complex queries by retrieving all users registered within a specific province. The system successfully traces the hierarchy upward from `Village → Cell → Sector → District → Province`.
+**Endpoint:**
+```http
+GET http://localhost:8080/api/users/province/NOR
+```
+![Retrieving Users by Province](screenshots/5_users_by_province.png)
+
+> **Conclusion:** These screenshots provide concrete evidence of the correct implementation of the self-referencing location hierarchy (one-to-many relationship) and the functional REST API endpoints handling hierarchical logic within the QuickBuild backend.

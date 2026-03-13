@@ -19,7 +19,7 @@ public class LocationController {
 
     @PostMapping
     public ResponseEntity<Location> createLocation(@RequestBody Location location,
-            @RequestParam(required = false) Long parentId) {
+            @RequestParam(name = "parentId", required = false) Long parentId) {
         return new ResponseEntity<>(locationService.saveLocation(location, parentId), HttpStatus.CREATED);
     }
 
@@ -29,12 +29,12 @@ public class LocationController {
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<List<Location>> getLocationsByType(@PathVariable ELocationType type) {
+    public ResponseEntity<List<Location>> getLocationsByType(@PathVariable("type") ELocationType type) {
         return ResponseEntity.ok(locationService.getLocationsByType(type));
     }
 
     @GetMapping("/children/{parentId}")
-    public ResponseEntity<List<Location>> getLocationsByParent(@PathVariable Long parentId) {
+    public ResponseEntity<List<Location>> getLocationsByParent(@PathVariable("parentId") Long parentId) {
         return ResponseEntity.ok(locationService.getLocationsByParent(parentId));
     }
 }

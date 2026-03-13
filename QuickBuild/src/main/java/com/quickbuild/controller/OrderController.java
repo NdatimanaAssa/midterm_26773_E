@@ -26,13 +26,13 @@ public class OrderController {
 
     @PostMapping("/user/{userId}")
     public ResponseEntity<OrderResponse> createUserOrder(
-            @PathVariable Long userId,
+            @PathVariable("userId") Long userId,
             @Valid @RequestBody UserOrderRequest request) {
         return new ResponseEntity<>(orderService.createUserOrder(userId, request), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<OrderResponse>> getUserOrders(@PathVariable Long userId) {
+    public ResponseEntity<List<OrderResponse>> getUserOrders(@PathVariable("userId") Long userId) {
         return ResponseEntity.ok(orderService.getUserOrders(userId));
     }
 }
