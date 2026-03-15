@@ -28,4 +28,11 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
+
+    @GetMapping("/{type}/{code}")
+    public ResponseEntity<List<User>> getUsersByLocation(
+            @PathVariable("type") String type,
+            @PathVariable("code") String code) {
+        return ResponseEntity.ok(userService.getUsersByLocation(type, code));
+    }
 }

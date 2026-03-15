@@ -9,4 +9,6 @@ public interface UserService {
     User registerUser(UserRegistrationRequest request);
 
     User getUserById(Long id);
+
+    List<User> getUsersByLocation(String type, String code);
 }

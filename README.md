@@ -60,14 +60,6 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/quickbuild
 spring.datasource.username=postgres
 spring.datasource.password=your_password
 ```
-
-> **⚠️ Important Database Upgrade Note:** 
-> QuickBuild was recently refactored to use a single, self-referencing `locations` table (Province → Village) instead of separate text columns for District, Sector, etc. 
-> If you are upgrading your database from an older version, you **must drop the old locations table** to clear outdated `NOT NULL` constraints before running the application:
-> ```sql
-> DROP TABLE locations CASCADE;
-> ```
-
 ### 2. Run the Application
 Start the project via Maven or your IDE:
 ```bash
@@ -109,7 +101,7 @@ Once a Village exists, register a user using the Village's code:
   "phone": "0780000000",
   "password": "password123",
   "location": {
-    "villageCode": "NYI"    // Must be a valid VILLAGE code
+    "villageCode": "KZG"    // Must be a valid VILLAGE code
   }
 }
 ```
