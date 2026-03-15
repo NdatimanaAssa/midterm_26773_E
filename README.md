@@ -131,7 +131,7 @@ POST http://localhost:8080/api/locations
   "type": "PROVINCE"
 }
 ```
-![Northern Province Creation](screenshots/1_northern_province.png)
+![Northern Province Creation](QuickBuild/screenshots/1_northern_province.png)
 
 ### 2. Creating Musanze District (Child)
 **Description:** Creating a district linked to the province using the `parentId` parameter. This demonstrates the correct routing and self-referencing relationship in the `locations` table.
@@ -147,7 +147,7 @@ POST http://localhost:8080/api/locations?parentId=PROVINCE_ID
   "type": "DISTRICT"
 }
 ```
-![Musanze District Creation](screenshots/2_musanze_district.png)
+![Musanze District Creation](QuickBuild/screenshots/2_musanze_district.png)
 
 ### 3. Database `locations` Table Hierarchy
 **Description:** A screenshot of pgAdmin (or your database viewer) showing the `locations` table data. The hierarchy is stored using the `parent_id` column, proving the self-referencing entity implementation. It should display rows similar to:
@@ -158,7 +158,7 @@ POST http://localhost:8080/api/locations?parentId=PROVINCE_ID
 *   **Cyabararika** → `CELL` → `parent_id`: *(ID of Muhoza)*
 *   **Kabazungu** → `VILLAGE` → `parent_id`: *(ID of Cyabararika)*
 
-![locations Table Hierarchy in Database](screenshots/3_locations_table_hierarchy.png)
+![locations Table Hierarchy in Database](QuickBuild/screenshots/3_locations_table_hierarchy.png)
 
 ### 4. Registering a User (Village Mapping)
 **Description:** Creating a user linked strictly to a Village. The full location hierarchy (Cell, Sector, District, Province) is determined automatically through the database parent relationships, removing the need to specify them here.
@@ -178,7 +178,7 @@ POST http://localhost:8080/api/users/register
   }
 }
 ```
-![User Registration with Village Code](screenshots/4_user_registration.png)
+![User Registration with Village Code](QuickBuild/screenshots/4_user_registration.png)
 
 ### 5. Retrieving Users by Province
 **Description:** Demonstrating complex queries by retrieving all users registered within a specific province. The system successfully traces the hierarchy upward from `Village → Cell → Sector → District → Province`.
@@ -186,6 +186,6 @@ POST http://localhost:8080/api/users/register
 ```http
 GET http://localhost:8080/api/users/province/NOR
 ```
-![Retrieving Users by Province](screenshots/5_users_by_province.png)
+![Retrieving Users by Province](QuickBuild/screenshots/5_users_by_province.png)
 
 > **Conclusion:** These screenshots provide concrete evidence of the correct implementation of the self-referencing location hierarchy (one-to-many relationship) and the functional REST API endpoints handling hierarchical logic within the QuickBuild backend.
